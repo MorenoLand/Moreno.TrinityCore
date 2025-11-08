@@ -90,7 +90,7 @@ if(COPY_CONF AND WIN32)
 endif()
 
 if(UNIX)
-  install(TARGETS worldserver DESTINATION bin)
+  install(TARGETS worldserver DESTINATION "${CMAKE_INSTALL_PREFIX}")
   if(COPY_CONF)
     install(FILES worldserver.conf.dist DESTINATION ${CONF_DIR})
   endif()

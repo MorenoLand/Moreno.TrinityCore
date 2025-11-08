@@ -20,6 +20,7 @@
 
 #include "Define.h"
 #include <array>
+#include <openssl/crypto.h>
 #include <openssl/evp.h>
 
 namespace Trinity::Crypto

@@ -78,7 +78,7 @@ if(COPY_CONF AND WIN32)
 endif()
 
 if(UNIX)
-  install(TARGETS authserver DESTINATION bin)
+  install(TARGETS authserver DESTINATION "${CMAKE_INSTALL_PREFIX}")
   if(COPY_CONF)
     install(FILES  authserver.conf.dist DESTINATION ${CONF_DIR})
   endif()

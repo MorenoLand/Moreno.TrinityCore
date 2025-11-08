@@ -75,6 +75,6 @@ if( ${CMAKE_PROJECT_NAME} STREQUAL "MaNGOS" )
     endif()
   endif()
   
-  install(DIRECTORY extensions DESTINATION "${BIN_DIR}/lua_scripts/")
+  install(DIRECTORY extensions DESTINATION "${CMAKE_INSTALL_PREFIX}/lua_scripts/")
   
 endif()

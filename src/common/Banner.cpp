@@ -26,7 +26,7 @@ void Trinity::Banner::Show(char const* applicationName, void(*log)(char const* t
     log("  __   __    _____   ____    ____   _  _   _____  ");
     log(" (  \\ // )  (  _  ) (  _ \\  ( ___) ( \\( ) (  _  ) ");
     log("  )     (    )(_)(   )   /   )__)   )  (  ( (_) )   ");
-    log(" (__\\/\\__)  (_____) (_)\\_)  (____) (_)\\_) (_____) Core v3 - https://morenoland.xyz");
+    log(" (__\\/\\__)  (_____) (_)\\_)  (____) (_)\\_) (_____) Core v4 - https://moreno.land");
 
 
     if (logExtraInfo)

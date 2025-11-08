@@ -58,6 +58,7 @@
 #include <openssl/opensslv.h>
 #include <openssl/crypto.h>
 #include <boost/asio/signal_set.hpp>
+#include <boost/dll/runtime_symbol_info.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/program_options.hpp>
 #include <csignal>
@@ -75,8 +76,8 @@ namespace fs = boost::filesystem;
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "worldserver";
-char serviceLongName[] = "MorenoCore3 world service";
-char serviceDescription[] = "MorenoCore3 World of Warcraft emulator world service";
+char serviceLongName[] = "MorenoCore4 world service";
+char serviceDescription[] = "MorenoCore4 World of Warcraft emulator world service";
 /*
  * -1 - not in service mode
  *  0 - stopped
@@ -168,7 +169,7 @@ extern int main(int argc, char** argv)
         }
     );
 
-    OpenSSLCrypto::threadsSetup();
+    OpenSSLCrypto::threadsSetup(boost::dll::program_location().remove_filename());
 
     std::shared_ptr<void> opensslHandle(nullptr, [](void*) { OpenSSLCrypto::threadsCleanup(); });
 
