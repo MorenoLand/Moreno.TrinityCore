@@ -58,8 +58,19 @@ DatabaseWorkerPool<T>::DatabaseWorkerPool()
 {
     WPFatal(mysql_thread_safe(), "Used MySQL library isn't thread-safe.");
     WPFatal(mysql_get_client_version() >= MIN_MYSQL_CLIENT_VERSION, "MorenoCore does not support MySQL versions below 5.1");
-    WPFatal(mysql_get_client_version() == MYSQL_VERSION_ID, "Used MySQL library version (%s id %lu) does not match the version id used to compile MorenoCore (id %u). Search on forum for MCE00011.",
-        mysql_get_client_info(), mysql_get_client_version(), MYSQL_VERSION_ID);
+    uint32 runtimeVersion = mysql_get_client_version();
+    uint32 compileVersion = MYSQL_VERSION_ID;
+    if (runtimeVersion != compileVersion) {
+        uint32 runtimeMajorMinor = (runtimeVersion / 100) * 100;
+        uint32 compileMajorMinor = (compileVersion / 100) * 100;
+        if (runtimeMajorMinor == compileMajorMinor) {
+            TC_LOG_WARN("sql.driver", "MySQL library version mismatch: compiled against %u, running with %s (id %lu). This is usually safe for patch versions.",
+                compileVersion, mysql_get_client_info(), runtimeVersion);
+        } else {
+            WPFatal(false, "Used MySQL library version (%s id %lu) does not match the major.minor version used to compile MorenoCore (id %u). Search on forum for MCE00011.",
+                mysql_get_client_info(), runtimeVersion, compileVersion);
+        }
+    }
 }
 
 template <class T>
